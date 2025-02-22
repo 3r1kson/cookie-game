@@ -71,29 +71,34 @@ def buy():
 
     value = int(total.text.replace(',', '').strip())
 
-    if value < grandma_price:
+    if value < grandma_price and cursor_price < grandma_price * 0.5:
         driver.find_element(By.ID, value='buyCursor').click()
         print("cursor")
 
-    elif value < factory_price:
+    elif value < factory_price and grandma_price < factory_price * 0.5:
         print("grandma")
-
         driver.find_element(By.ID, value='buyGrandma').click()
-    elif value < mine_price:
+
+    elif value < mine_price and factory_price < mine_price * 0.5:
         print("factory")
         driver.find_element(By.ID, value='buyFactory').click()
-    elif value < shipment_price:
+
+    elif value < shipment_price and mine_price < shipment_price * 0.5:
         print("mine")
         driver.find_element(By.ID, value='buyMine').click()
-    elif value < alchemy_price:
+
+    elif value < alchemy_price and shipment_price < alchemy_price * 0.5:
         print("shipment")
         driver.find_element(By.ID, value='buyShipment').click()
-    elif value < portal_price:
+
+    elif value < portal_price and alchemy_price < portal_price * 0.5:
         print("alchemy")
         driver.find_element(By.ID, value='buyAlchemy lab').click()
+
     elif value < time_machine_price:
         print("portal")
         driver.find_element(By.ID, value='buyPortal').click()
+
     else:
         print("time machine")
         driver.find_element(By.ID, value='buyTime machine').click()
